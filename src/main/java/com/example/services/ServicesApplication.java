@@ -19,6 +19,9 @@ public class ServicesApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		produitRepository.save(new Produit("Ordinateur Lx 45",6700,3));
+		produitRepository.save(new Produit("Imprimante HP",1700,3));
+		produitRepository.save(new Produit("Smart Phone Samsung S9",8000,7));
 		
 		produitRepository.findAll().forEach(p ->{
 			System.out.println(p.toString());
