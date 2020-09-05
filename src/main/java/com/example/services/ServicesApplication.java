@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 
 import com.example.services.dao.ProduitRepository;
 import com.example.services.entities.Produit;
@@ -13,12 +14,17 @@ public class ServicesApplication implements CommandLineRunner {
 	
 	@Autowired
 	private ProduitRepository produitRepository;
+	
+	@Autowired
+	private RepositoryRestConfiguration restConfiguration;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(ServicesApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
+		restConfiguration.exposeIdsFor(Produit.class);
 		produitRepository.save(new Produit("Ordinateur Lx 45",6700,3));
 		produitRepository.save(new Produit("Imprimante HP",1700,3));
 		produitRepository.save(new Produit("Smart Phone Samsung S9",8000,7));
